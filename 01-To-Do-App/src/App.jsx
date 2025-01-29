@@ -13,7 +13,7 @@ export function App() {
     const [blur, setBlur] = useState("");
     const [isUpdate, setIsUpdate] = useState(false);
     const [idpersisted, setIdpersisted] = useState(null);
-    const [fetch, setFetch] = useState(false);
+
 
     const add = () => {
         setIsUpdate(false)
@@ -100,8 +100,8 @@ export function App() {
 
     return (
         <>
-            <div className={`bg-blue-100 min-h-screen flex flex-col justify-center items-center ${blur}`}>
-                <h1 className="text-3xl font-bold mb-4">TO-DO APP</h1>
+            <div className={`bg-radial from-sky-500 via-blue-400 to-indigo-400 to-90% min-h-screen flex flex-col justify-center items-center ${blur}`}>
+                <h1 className="text-3xl text-white font-bold mt-4 mb-4">TO-DO APP</h1>
                 <div className="flex flex-col space-y-4">
                     {
                         tasks.map((item, _) => {
