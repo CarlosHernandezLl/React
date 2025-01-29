@@ -1,7 +1,5 @@
 import { MdiTrash, TablerEdit } from "../icon.jsx";
-import { Button } from "./Button";
 import { useState } from "react";
-import { Form } from "./Form.jsx";
 
 export const getCard = (e) => {
     return e.target.parentNode.parentNode.id;

@@ -3,68 +3,24 @@ import { Card, getCard } from "./components/Card"
 import { Button } from "./components/Button"
 import { MaterialSymbolsAdd } from "./icon"
 import { Form } from "./components/Form"
-
-const data2 = [
-
-    {
-        id: 10,
-        name: "Pay Bills",
-        description: "Pay bills before 10th of every month to avoid late fees and penalties, also to maintain a good credit score, and to avoid disconnection of services, and to avoid legal actions."
-
-    },
-    {
-        id: 12,
-        name: "Exercise",
-        description: "Regular exercise is important for physical and mental health"
-    },
-    {
-        id: 30,
-        name: "Eat Healthy",
-        description: "Eating healthy is important for physical and mental health"
-    },
-    {
-        id: 40,
-        name: "Home Work",
-        description: " Do your homework before the deadline to avoid penalties and to maintain a good grade"
-    },
-    {
-        id: 105,
-        name: "Girlfriend",
-        description: "Spend time with your girlfriend to maintain a healthy relationship"
-    }, {
-        id: 200,
-        name: "Lunch",
-        description: "Eat lunch before 1:00 PM"
-    }, {
-        id: 11,
-        name: "Workout",
-        description: "Workout for 30 minutes "
-    },
-]
-
+import data from "./data.json"
 
 
 export function App() {
 
+    const [tasks, setTasks] = useState(data.tasks);
     const [visibleForm, setVisibleForm] = useState("hidden");
-    const [data, setData] = useState(data2);
     const [blur, setBlur] = useState("");
     const [isUpdate, setIsUpdate] = useState(false);
     const [idpersisted, setIdpersisted] = useState(null);
-
-    useEffect(() => {
-
-        setData(data)
-
-    }, [])
-
+    const [fetch, setFetch] = useState(false);
 
     const add = () => {
-        document.getElementById("task").value = "";
-        document.getElementById("description").value = "";
         setIsUpdate(false)
         setVisibleForm("")
         setBlur("blur-sm")
+        document.getElementById("task").value = "";
+        document.getElementById("description").value = "";
     }
 
     const close = () => {
@@ -76,9 +32,8 @@ export function App() {
         setIsUpdate(true);
         setVisibleForm("");
         setBlur("blur-sm")
-        data.map((item) => {
+        tasks.map((item) => {
             if (item.id == getCard(e)) {
-                console.log("item.id", item.id);
                 setIdpersisted(item.id);
                 document.getElementById("task").value = item.name;
                 document.getElementById("description").value = item.description;
@@ -89,7 +44,7 @@ export function App() {
 
     const update = () => {
 
-        data.map((item) => {
+        tasks.map((item) => {
             if (item.id == idpersisted) {
                 item.name = document.getElementById("task").value;
                 item.description = document.getElementById("description").value;
@@ -103,51 +58,53 @@ export function App() {
 
     }
 
-    const deleteList = (e) => {
-        const newData = data.filter((item) => item.id != getCard(e));
-        console.log("se borro el id", getCard(e));
-        setData(newData);
+    const deleteList = async (e) => {
+
+        try {    
+            const newData = tasks.filter((item)=> item.id != getCard(e));
+            setTasks(newData);
+        }
+        catch (e) {
+            throw new alert("Error")
+        }
+
 
     }
 
 
-    const save = () => {
+    const save = async (e) => {
         try {
-
-            const id = data.length + 1;
             const task = document.getElementById("task").value;
             const description = document.getElementById("description").value;
 
             if (task === "" || description === "") {
                 throw new alert("Task and Description are required")
             }
-
-            const newData = {
-                id: id,
+            
+            setTasks([...tasks, {
+                id: tasks.length + 1,
                 name: task,
                 description: description
-            }
+            }])
 
-            const newDataArray = [...data, newData];
-            setData(newDataArray);
             document.getElementById("task").value = "";
             document.getElementById("description").value = "";
             setVisibleForm("hidden")
             setBlur("")
 
         } catch (e) {
-            console.log(e)
+            throw new alert("Error")
         }
 
     }
 
     return (
         <>
-            <div id='abc' className={`bg-blue-100 min-h-screen flex flex-col justify-center items-center ${blur}`}>
+            <div className={`bg-blue-100 min-h-screen flex flex-col justify-center items-center ${blur}`}>
                 <h1 className="text-3xl font-bold mb-4">TO-DO APP</h1>
                 <div className="flex flex-col space-y-4">
                     {
-                        data.map((item, _) => {
+                        tasks.map((item, _) => {
                             return <Card key={item.id} idCard={item.id} name={item.name} description={item.description} updatedCard={showFormUpdate} deleteCard={deleteList} />
                         })
                     }
