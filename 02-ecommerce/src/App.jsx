@@ -1,0 +1,84 @@
+import { createContext, useContext, useRef, useState } from 'react'
+import './App.css'
+import { useEffect } from 'react'
+import { NavBar } from './components/NavBar'
+import useFetch from './hooks/useFetch'
+import { CartPage } from './components/CartPage'
+import { CartContext, CartProvider } from './context/cartContext'
+
+
+function App() {
+
+  const { data } = useFetch()
+  const { cartTotal, incrementCartTotal } = useContext(CartContext)
+
+
+  const decrementCartTotal = () => {
+
+  };
+
+  const search = (e) => {
+    e.preventDefault()
+    const search = e.target.previousElementSibling.value
+    setSearchValue(search)
+    console.log(search)
+
+  }
+
+
+
+  const gotoNewPage = (e) => {
+    console.log(e.target)
+  }
+
+
+  return (
+    <>
+
+      <NavBar />
+
+      <CartPage productos={cartTotal}  />
+
+      <div className="App">
+        <form className='flex items-center justify-center space-x-1 mt-10'>
+          <input type='text' name='search' placeholder='Search' style={{
+            outline: 'none',
+            border: '1px solid #000',
+            padding: '10px',
+            width: '50%',
+            borderRadius: '5px',
+            color: '#000'
+          }} />
+          <button onClick={search} className='bg-blue-500 text-white p-2 w-auto rounded-md'>Search
+          </button>
+        </form>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center mt-10'>
+          {
+            data.slice(0, 10).map((item) => {
+              return (
+                <div key={item.id} className='relative flex flex-col justify-center items-center gap-1 p-2 bg-amber-100 rounded-md'>
+                  <img className='w-52 h-52 rounded-2xl' src={item.images} alt={item.title} />
+                  <h2 className='text-amber-950'>{item.title}</h2>
+                  <h2 className='text-amber-950'>${item.price}</h2>
+                  <button onClick={() => { incrementCartTotal(item) }} className='bg-blue-500 text-white p-4 w-auto rounded-full'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+                      <circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle>
+                      <path d="M13 13h2v-2.99h2.99v-2H15V5.03h-2v2.98h-2.99v2H13V13z"></path>
+                      <path d="M10 17h8a1 1 0 0 0 .93-.64L21.76 9h-2.14l-2.31 6h-6.64L6.18 4.23A2 2 0 0 0 4.33 3H2v2h2.33l4.75 11.38A1 1 0 0 0 10 17z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+              )
+            })
+          }
+        </div>
+
+      </div>
+
+    </>
+  )
+}
+
+export default App
