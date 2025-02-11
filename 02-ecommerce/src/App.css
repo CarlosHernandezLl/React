@@ -1,7 +1,12 @@
 .App{
+  position: relative;
+  top: 78px;
   display: flex;
+  padding-left: 5%;
+  padding-right: 5%;
   flex-direction: column;
   place-items: center;
   min-height: 100vh;
   min-width: 420px; 
+  background-color: #eee;
 }

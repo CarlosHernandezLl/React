@@ -1,39 +1,39 @@
 {
-    "tasks" : [
+    "tasks": [
         {
             "id": 1,
-            "name": "Task 1",
-            "description": "Description 1",
+            "name": "Salir a correr",
+            "description": "Correr 5 km en el parque",
             "status": "pending"
         },
         {
             "id": 2,
-            "name": "Task 2",
-            "description": "Description 2",
+            "name": "Comer sano",
+            "description": "Comer ensalada de atún",
             "status": "pending"
         },
         {
             "id": 3,
-            "name": "Task 3",
-            "description": "Description 3",
+            "name": "Programar en React",
+            "description": "Crear una aplicación de tareas",
             "status": "pending"
         },
         {
             "id": 4,
-            "name": "Task 4",
-            "description": "Description 4",
+            "name": "Leer un libro",
+            "description": "Leer el libro de JavaScript",
             "status": "pending"
         },
         {
             "id": 5,
-            "name": "Task 5",
-            "description": "Description 5",
+            "name": "Sacar la basura",
+            "description": "Sacar la basura a las 8:00 pm",
             "status": "pending"
         },
         {
             "id": 6,
-            "name": "Task 6",
-            "description": "Description 6",
+            "name": "Ducharse",
+            "description": "Ducharse con agua caliente",
             "status": "pending"
         }
     ]
