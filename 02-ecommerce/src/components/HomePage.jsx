@@ -3,7 +3,7 @@ import '../App.css'
 import { useEffect } from 'react'
 import { NavBar } from './NavBar'
 import useFetch from '../hooks/useFetch'
-import { CartContext } from '../context/cartContext'
+import { CartContext } from '../context/CartContext'
 import { InfoProduct } from './InfoProduct'
 import { FilterContext, FilterProvider } from '../context/FilterContext'
 

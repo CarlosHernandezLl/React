@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import reactLogo from '../assets/react.svg'
-import { CartContext } from '../context/cartContext'
+import { CartContext } from '../context/CartContext'
 import { Link } from 'react-router-dom'
 import { FilterContext, FilterProvider } from '../context/FilterContext'
 import { use } from 'react'
