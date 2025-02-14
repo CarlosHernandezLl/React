@@ -1,5 +1,5 @@
 # Link del proyecto
-- (https://react-navy-delta.vercel.app/)
+- https://react-navy-delta.vercel.app/
 
 # React + Vite
 
