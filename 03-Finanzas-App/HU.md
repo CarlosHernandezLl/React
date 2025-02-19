@@ -12,17 +12,17 @@ src/
 //Realizar
 Registrar ingresos y gastos con categorías.
 Visualizar reportes gráficos sobre su estado financiero.
-Tener un dashboard con el saldo actual, estadísticas y últimas transacciones.
+Tener un dashboard con el saldo actual, estadísticas y últimas transacciones. ✅
 Configurar un presupuesto mensual para cada categoría.
 Modo oscuro y claro para mejorar la experiencia del usuario.
 Soporte para múltiples dispositivos (móvil, tablet, desktop).
 
 //
 Funcionalidades y Módulos
-1️⃣ Autenticación (Opcional)
-Registro e inicio de sesión con Google/Auth.
-Guardado de datos en Firebase o Supabase.
-2️⃣ Dashboard Principal
+1️⃣ Autenticación (Opcional) ✅
+Registro e inicio de sesión con Google/Auth. 
+Guardado de datos en Firebase o Supabase. 
+2️⃣ Dashboard Principal ✅
 Saldo total disponible.
 Lista de últimas transacciones.
 Gráfico de ingresos vs gastos.

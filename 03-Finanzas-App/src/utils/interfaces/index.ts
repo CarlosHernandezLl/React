@@ -7,3 +7,14 @@ export interface CardProps {
     color: string
     funtion: () => void
 }
+
+export interface IncomesAndExpensesData {
+    month: string,
+    incomes: number,
+    expenses: number
+}
+
+export interface SavingsData {
+    month: string,
+    savings: number
+}

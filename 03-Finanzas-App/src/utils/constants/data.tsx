@@ -1,127 +1,124 @@
 import { ChartConfig } from "@/components/ui/chart"
 
-export const IncomesData: Array<any> = [
+interface IncomeData {
+    date: string;
+    amount: number;
+    source: string;
+    method: string;
+    category: string;
+    userId: string;
+}
+
+interface ExpenseData {
+    date: string;
+    amount: number;
+    source: string;
+    method: string;
+    category: string;
+    userId: string;
+}
+
+export const IncomesData: Array<IncomeData> = [
     {
-        "invoice": "INV001",
-        "status": "Paid",
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/01/2021",
+        "amount": 150.00,
+        "source": "Salary",
         "method": "Credit Card",
-        "amount": 250.00
+        "category": "Others"
     },
     {
-        "invoice": "INV002",
-        "status": "Paid",
-        "method": "Paypal",
-        "amount": 250.00
-    },
-    {
-        "invoice": "INV003",
-        "status": "Paid",
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/01/2021",
+        "amount": 1500.00,
+        "source": "Salary",
         "method": "Credit Card",
-        "amount": 250.00
+        "category": "Others"
     },
     {
-        "invoice": "INV004",
-        "status": "Paid",
-        "method": "Paypal",
-        "amount": 250.00
-    },
-    {
-        "invoice": "INV005",
-        "status": "Paid",
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/03/2021",
+        "amount": 1500.00,
+        "source": "Salary",
         "method": "Credit Card",
-        "amount": 250.00
+        "category": "Others"
     },
     {
-        "invoice": "INV006",
-        "status": "Paid",
-        "method": "Paypal",
-        "amount": 250.00
-    },
-    {
-        "invoice": "INV007",
-        "status": "Paid",
-        "method": "Credit Card",
-        "amount": 254.00
-    },
-    {
-        "invoice": "INV008",
-        "status": "Paid",
-        "method": "Paypal",
-        "amount": 251.00
-    },
-    {
-        "invoice": "INV009",
-        "status": "Paid",
-        "method": "Credit Card",
-        "amount": 5000
-    },
-    {
-        "invoice": "INV010",
-        "status": "Paid",
-        "method": "Paypal",
-        "amount": 100.00
-    },
-    {
-        "invoice": "INV011",
-        "status": "Paid",
-        "method": "Credit Card",
-        "amount": 250.00
-    },
-    {
-        "invoice": "INV012",
-        "status": "Paid",
-        "method": "Paypal",
-        "amount": 250.00
-    },
-    {
-        "invoice": "INV013",
-        "status": "Paid",
-        "method": "Credit Card",
-        "amount": 8000.00
-    },
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/04/2021",
+        "amount": 5450.00,
+        "source": "Freelance",
+        "method": "Cash",
+        "category": "Others"
+    }
 ]
 
-export const ExpensesData: Array<any> = [
+export const ExpensesData: Array<ExpenseData> = [
     {
-        "income": "INC001",
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
         "date": "01/01/2021",
-        "amount": 650.00
+        "amount": 1150.54,
+        "source": "Market",
+        "method": "Credit Card",
+        "category": "Groceries"
     },
     {
-        "income": "INC002",
-        "date": "01/02/2021",
-        "amount": 780.00
-    },
-    {
-        "income": "INC003",
-        "date": "01/03/2021",
-        "amount": 1550.00
-    },
-    {
-        "income": "INC004",
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
         "date": "01/04/2021",
-        "amount": 250.00
+        "amount": 3000.00,
+        "source": "Market",
+        "method": "Cash",
+        "category": "Transportation"
+    },
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/03/2021",
+        "amount": 1150.00,
+        "source": "Market",
+        "method": "Credit Card",
+        "category": "Entertainment"
+    },
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/04/2021",
+        "amount": 2250.00,
+        "source": "Market",
+        "method": "Cash",
+        "category": "Others"
+    },
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "date": "01/04/2021",
+        "amount": 2250.00,
+        "source": "Market",
+        "method": "Cash",
+        "category": "Education"
     }
+
 
 ]
 
 export const IncomeVsExpenseData: Array<any> = [
     {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
         "month": "January",
-        "incomes": 1500,
+        "incomes": 1500.50,
         "expenses": 1000
     },
     {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
         "month": "February",
         "incomes": 2000,
         "expenses": 500
     },
     {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
         "month": "March",
         "incomes": 3000,
         "expenses": 6000
     },
     {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXz",
         "month": "April",
         "incomes": 2000,
         "expenses": 3500
@@ -168,7 +165,61 @@ export const IncomeVsExpenseData: Array<any> = [
     },
 ]
 
+export const SavingsData: Array<any> = [
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "month": "January",
+        "saving": 500,
+    },
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "month": "February",
+        "saving": 1500,
+    },
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "month": "March",
+        "saving": 2000,
+    },
+    {
+        "userId": "qnYYnrvO04VS8GZ2rbNiryXzH6u2",
+        "month": "April",
+        "saving": 500,
+    },
+    {
+        "month": "May",
+        "saving": 1000,
+    },
+    {
+        "month": "June",
+        "saving": 1500,
+    },
+    {
+        "month": "July",
+        "saving": 2000,
+    },
+    {
+        "month": "August",
+        "saving": 2500,
+    },
+    {
+        "month": "September",
+        "saving": 1000,
+    },
+    {
+        "month": "October",
+        "saving": 3500,
+    },
+    {
+        "month": "November",
+        "saving": 300,
+    },
+    {
+        "month": "December",
+        "saving": 4500,
+    },
 
+]
 
 export const ByCategoryData: Array<any> = [
     {
@@ -220,3 +271,12 @@ export const chartConfig = {
     }
 
 } satisfies ChartConfig
+
+export const CATEGORY = [
+    "Groceries",
+    "Transportation",
+    "Health",
+    "Entertainment",
+    "Education",
+    "Others"
+]

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
-import { doSignInWithEmailAndPassword, doSignInWithFacebook, doSignInWithGoogle } from "@/services/login.service";
+import { doCreateUserWithEmailAndPassword, doSignInWithGoogle } from "@/services/login.service";
 import { Link, Navigate } from "react-router";
 
 import deviconGoogle from "../assets/devicon--google.svg"
@@ -30,16 +30,19 @@ const formSchema = z.object({
     password: z.string().min(2,
         "Password must be at least 6 characters long."
     ),
+
+    password2: z.string().min(2,
+        "Password must be at least 6 characters long."
+    ),
 })
 
 
 
 
-function Login() {
+function Register() {
 
     const { isAuthenticated } = useAuth();
-
-    const [isSignedIn, setIsSignedIn] = useState(false);
+    const [isError, setIsError] = useState('');
 
     //Here we are using react-hook-form to handle the form state
     const form = useForm<z.infer<typeof formSchema>>({
@@ -47,48 +50,47 @@ function Login() {
         defaultValues: {
             email: "",
             password: "",
+            password2: "",
         },
     });
 
-    //Here we are defining the submit function
+    const onChange = (e: any) => {
+
+        const { name, value } = e.target;
+
+        if ( name === 'password2' && value !== form.getValues('password')) {
+            setIsError('Passwords do not match');
+            return;
+        }
+        else{
+            setIsError('');
+        }
+
+        
+    }
+
     const onSubmit = form.handleSubmit(async (data) => {
         console.log(data);
+        if (data.password !== data.password2) {
+            setIsError('Passwords do not match');
+            return;
+        }
         try {
-            if (!isSignedIn) {
-                await doSignInWithEmailAndPassword(data.email, data.password);
-                setIsSignedIn(true);
-            }
+            await doCreateUserWithEmailAndPassword(data.email, data.password);
         } catch (error) {
             alert(error);
         }
-
     });
 
     const withGoogle = async () => {
         console.log("Google");
         try {
-            if (!isSignedIn) {
-                await doSignInWithGoogle();
-                setIsSignedIn(true);
-            }
-        }
-        catch (error) {
-            alert(error);
+            await doSignInWithGoogle();
+        } catch (error) {
+            console.log(error);
         }
     }
 
-    const withFacebook = async () => {
-        console.log("Facebook");
-        try {
-            if (!isSignedIn) {
-                await doSignInWithFacebook();
-                setIsSignedIn(true);
-            }
-        }
-        catch (error) {
-            alert(error);
-        }
-    }
 
     return (
         <>
@@ -98,8 +100,8 @@ function Login() {
                     null
             }
             < main className="flex items-center justify-center h-screen bg-gradient-to-r from-slate-700 to-slate-700 " >
-                <div className="flex flex-col items-center justify-center gap-3 w-96  h-auto rounded-lg shadow-lg py-10 ">
-                    <h1 className="text-2xl font-semibold text-white pb-2">Login</h1>
+                <div onChange={onChange} className="flex flex-col items-center justify-center gap-3 w-96  h-auto rounded-lg shadow-lg py-10 ">
+                    <h1 className="text-2xl font-semibold text-white pb-2">Register</h1>
                     <Form {...form}>
                         <FormField
                             control={form.control}
@@ -119,7 +121,7 @@ function Login() {
                             name="password"
                             render={({ field }) => (
                                 <FormItem className="w-full px-10">
-                                    <FormLabel className="text-white">Password</FormLabel>
+                                    <FormLabel className="text-white"> Password</FormLabel>
                                     <FormControl>
                                         <Input className="bg-transparent text-white focus-visible:ring-0 focus-visible:ring-transparent" type="password" placeholder={'*'.repeat(8)} {...field} />
                                     </FormControl>
@@ -127,20 +129,37 @@ function Login() {
                                 </FormItem>
                             )}
                         />
+                        <FormField
+                            control={form.control}
+                            name="password2"
+                            render={({ field }) => (
+                                <FormItem className="w-full px-10">
+                                    <FormLabel className="text-white">Confirm Password</FormLabel>
+                                    <FormControl>
+                                        <Input className="bg-transparent text-white focus-visible:ring-0 focus-visible:ring-transparent" type="password" placeholder={'*'.repeat(8)} {...field} />
+                                    </FormControl>
+                                    <FormMessage >
+                                        {isError}
+                                    </FormMessage>
+                                </FormItem>
+                            )}
+                        />
 
                         <Button
                             onClick={onSubmit}
                             type="submit"
-                            className="bg-transparent border-2 mt-7 text-white py-2 rounded-lg w-[304px] px-10"
+                            className="bg-transparent border-2 mt-7 text-white py-2 rounded-lg w-[304px] px-10
+                            hover:bg-black hover:border-black
+                            "
                         >
-                            Sing In
+                            Sing Up
                         </Button>
 
                         <div className="flex justify-center w-full px-10 text-white space-x-2">
                             <p>
-                                Don't have an account?
+                                Do you have an account?
                             </p>
-                            <Link to="/singup" className="text-white underline">Register</Link>
+                            <Link to="/login" className="text-white underline">Sign In</Link>
                         </div>
 
                     </Form>
@@ -150,7 +169,7 @@ function Login() {
                             <img src={deviconGoogle} alt="Google" className="w-6 h-6" />
                             <p className="text-white">Iniciar sesion con Google</p>
                         </Button>
-                        <Button onClick={withFacebook} className="w-60 bg-transparent flex rounded-xl p-2 border space-x-4 hover:bg-black hover:border-black" >
+                        <Button onClick={withGoogle} className="w-60 bg-transparent flex rounded-xl p-2 border space-x-4 hover:bg-black hover:border-black" >
                             <img src={deviconFacebook} alt="Facebook" className="w-6 h-6" />
                             <p className="text-white">Iniciar sesion con Facebook</p>
                         </Button>
@@ -163,7 +182,7 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;
 
 
 
